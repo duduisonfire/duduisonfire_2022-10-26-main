@@ -1,9 +1,8 @@
-let minPassword = 184759 + 1;
-let maxPassword = 856920 - 1;
-
 class PasswordCombinationVerify {
     constructor() {
-        this.actualPassword = minPassword;
+        this.minPassword = 184759 + 1;
+        this.maxPassword = 856920 - 1;
+        this.actualPassword = this.minPassword;
         this.allValidPassword = new Set();
         this.allInvalidPassword = new Set();
     }
@@ -44,16 +43,16 @@ class PasswordCombinationVerify {
     }
 
     countValidPassword() {
-        for (let index = 0; index < maxPassword-minPassword; index++) {
+        for (let index = 0; index < this.maxPassword-this.minPassword; index++) {
             if (this.validatePassword()) {
                 console.log(`${this.actualPassword} is valid`);
                 this.allValidPassword.add(this.actualPassword);
-                this.passwordIterate();
             } else {
                 console.log(`${this.actualPassword} is invalid`);
                 this.allInvalidPassword.add(this.actualPassword);
-                this.passwordIterate();
             }
+            
+            this.passwordIterate();
         }
     }
 }
