@@ -36,20 +36,24 @@ class PasswordCombinationVerify {
     }
 
     validatePassword() {
-        if (this.verifyDouble() && this.checkGreaterThan()) {
-            console.log(`${this.actualPassword} is valid`)
-            this.allValidPassword.add(this.actualPassword);
-            return this.actualPassword += 1;
-        } else {
-            console.log(`${this.actualPassword} is invalid`)
-            this.allInvalidPassword.add(this.actualPassword);
-            return this.actualPassword += 1;
-        }
+        return (this.verifyDouble() && this.checkGreaterThan());
+    }
+
+    passwordIterate() {
+        this.actualPassword += 1;
     }
 
     countValidPassword() {
-        while (!this.allValidPassword.has(maxPassword) && !this.allInvalidPassword.has(maxPassword)) {
-            this.validatePassword()
+        for (let index = 0; index < maxPassword-minPassword; index++) {
+            if (this.validatePassword()) {
+                console.log(`${this.actualPassword} is valid`);
+                this.allValidPassword.add(this.actualPassword);
+                this.passwordIterate();
+            } else {
+                console.log(`${this.actualPassword} is invalid`);
+                this.allInvalidPassword.add(this.actualPassword);
+                this.passwordIterate();
+            }
         }
     }
 }

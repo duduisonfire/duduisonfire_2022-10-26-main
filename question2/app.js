@@ -13,7 +13,7 @@ class DocumentInstructions {
     }
 
     async executeFile() {
-        await document.readFile(`${__dirname}/commands.txt`);
+        await this.readFile(`${__dirname}/commands.txt`);
         let command;
         for (let index = 0; index < this.file.length; index++) {
             if (this.file[index].charAt(0) === '5') {
@@ -37,6 +37,6 @@ class DocumentInstructions {
     }
 }
 
-const document = new DocumentInstructions();
+const commands = new DocumentInstructions();
 
-document.getAddress();
+commands.getAddress();
