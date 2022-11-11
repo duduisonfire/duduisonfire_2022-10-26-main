@@ -8,14 +8,13 @@ class DocumentInstructions {
 
     async readFile(filename) {
         const contents = await fs.readFile(filename, 'utf-8');
-        let file = contents.split(/\r?\n/);
-        this.file = file;
+        this.file = contents.split(/\r?\n/);
     }
 
     async executeFile() {
         await this.readFile(`${__dirname}/commands.txt`);
         let command;
-        
+
         for (let index = 0; index < this.file.length; index++) {
             if (this.file[index].charAt(0) === '5') {
                 command = this.file[index].slice(1);
@@ -38,4 +37,5 @@ class DocumentInstructions {
     }
 }
 
-new DocumentInstructions().getAddress();
+let instructionText = new DocumentInstructions();
+instructionText.getAddress();

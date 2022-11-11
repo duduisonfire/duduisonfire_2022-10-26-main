@@ -38,7 +38,7 @@ class PasswordCombinationVerify {
         return (this.verifyDouble() && this.checkGreaterThan());
     }
 
-    passwordIterate() {
+    goToNextPassword() {
         this.actualPassword += 1;
     }
 
@@ -52,7 +52,7 @@ class PasswordCombinationVerify {
                 this.allInvalidPassword.add(this.actualPassword);
             }
             
-            this.passwordIterate();
+            this.goToNextPassword();
         }
     }
 }
